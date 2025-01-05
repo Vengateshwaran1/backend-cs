@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-
 const billSchema = new mongoose.Schema({
     bid: { type: String, required: true },
     pid: { type: String, required: true },
@@ -10,7 +9,8 @@ const billSchema = new mongoose.Schema({
             _id: false,
         },
     ],
-    total: { type: Number, required: true }
+    total: { type: Number, required: true },
+    date: { type: Date, required: true } 
 }, { versionKey: false });
 
 const Bill = mongoose.model("Bill", billSchema);
