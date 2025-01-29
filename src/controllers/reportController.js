@@ -2,10 +2,6 @@ import Doctor from '../models/doctors.js';
 import Bill from '../models/bills.js';
 import Patient from '../models/patients.js';
 
-
-
-
-
 export const getTotalPatientsVisited = async (req, res) => {
     const { startDate, endDate } = req.body;
     if (!startDate || !endDate) {
@@ -14,6 +10,7 @@ export const getTotalPatientsVisited = async (req, res) => {
     try {
         const start = new Date(startDate);
         const end = new Date(endDate);
+        console.log(start,end);
         console.log('Counting patients with lastVisit between', start.toISOString(), 'and', end.toISOString());
         const totalPatients = await Patient.countDocuments({
             lastVisit: {
@@ -78,6 +75,7 @@ export const getTotalRevenue = async (req, res) => {
 
     const start = new Date(startDate);
     const end = new Date(endDate);
+    
     if (isNaN(start.getTime()) || isNaN(end.getTime())) {
         return res.status(400).json({ message: 'Invalid date format' });
     }
